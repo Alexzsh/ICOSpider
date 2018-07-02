@@ -8,7 +8,7 @@ from selenium import webdriver
 import json
 
 from threading import Thread
-
+#simulate a browser to be prevented
 header = {
 
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -16,11 +16,11 @@ header = {
     'Accept-Language': 'zh-CN,zh;q=0.9'
 
 }
-
+#simulate click or hover via using phantomjs
 driver = webdriver.PhantomJS(
     executable_path='./phantomjs')
 
-
+#define a class
 class ICOTerm():
     def __init__(self, term_dict):
         self.web = term_dict['web']
@@ -29,8 +29,9 @@ class ICOTerm():
         # self.etherscan = term_dict['???']
         self.telegram = term_dict['telegram']
         self.twitter = term_dict['twitter']
-        self.result = {}
+        self.result = {}					# storage the result
 
+	# get request via urllib
     def getResponse(self, url):
         # start=time.time()
         request = urllib.request.Request(url, headers=header)
@@ -62,6 +63,7 @@ class ICOTerm():
 
                 data = response.read().decode('utf-8')
 
+				# get data via xpath
                 path = '// meta[ @ property = "og:url"] /@content'
                 selector = etree.HTML(data)
                 data = selector.xpath(path)
@@ -165,7 +167,7 @@ class ICOTerm():
         count = followers[0]
         self.result[tag] = count
         print('twitter over')
-
+	#threads
     def MulTreGetter(self):
         threads = [Thread(target=self.GetYoutubeViewCount),
                    Thread(target=self.getAlexaRank),
@@ -177,7 +179,7 @@ class ICOTerm():
         for t in threads:
             t.start()
         for t in threads:
-            t.join()
+            t.join()#wait all threads done
         return self.result
 
 
@@ -192,18 +194,21 @@ if __name__ == "__main__":
     for ico_proj in fileJson:
         result = ICOTerm(ico_proj)
         Terms[ico_proj["id"]] = result
+	#multi-processes
     for term in Terms.keys():
         result = p.apply_async(Terms[term].MulTreGetter)
         processes[term] = result
 
     p.close()
     p.join()
+	#wait all processes done
     driver.quit()
     for proc in processes.keys():
         res[proc] = processes[proc].get()
     res['date'] = time.strftime('%Y-%m-%d',time.localtime(time.time()))
     print(res)
     print(time.time() - t)
+	#convert result to a json format and write in a file
     filename = 'ico.json'
     fp = open(filename,'a')
     fp.write(json.dumps(res))

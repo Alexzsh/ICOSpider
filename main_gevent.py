@@ -7,7 +7,7 @@ from multiprocessing import Pool
 import gevent
 from lxml import etree
 from selenium import webdriver
-
+#simulate a browser to be prevented
 header = {
 
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -15,7 +15,7 @@ header = {
     'Accept-Language': 'zh-CN,zh;q=0.9'
 
 }
-
+#simulate click or hover via using phantomjs
 driver = webdriver.PhantomJS(
     executable_path='./phantomjs')
 
@@ -28,8 +28,9 @@ class ICOTerm():
         # self.etherscan = term_dict['???']
         self.telegram = term_dict['telegram']
         self.twitter = term_dict['twitter']
-        self.result = {}
+        self.result = {}			# storage the result
 
+	# get request via urllib
     def getResponse(self, url):
         # start=time.time()
         request = urllib.request.Request(url, headers=header)
@@ -164,7 +165,7 @@ class ICOTerm():
         count = followers[0]
         self.result[tag] = count
         print('twitter over')
-
+	#gevents
     def MulTreGetter(self):
 
         gevent.joinall([gevent.spawn(self.getAlexaRank()),
@@ -188,18 +189,21 @@ if __name__ == "__main__":
     for ico_proj in fileJson:
         result = ICOTerm(ico_proj)
         Terms[ico_proj["name"]] = result
+	#multi-processes
     for term in Terms.keys():
         result = p.apply_async(Terms[term].MulTreGetter)
         processes[term] = result
 
     p.close()
     p.join()
+	#wait all processes done
     driver.quit()
     for proc in processes.keys():
         res[proc] = processes[proc].get()
     res['date'] = time.strftime('%Y-%m-%d', time.localtime(time.time()))
     print(res)
     print(time.time() - t)
+	#convert result to a json format and write in a file
     # filename = 'ico.json'
     # fp = open(filename, 'a+')
     # fp.write(json.dumps(res))
