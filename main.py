@@ -1,5 +1,6 @@
 import urllib.request
 import re
+import collections
 from lxml import etree
 import time
 from multiprocessing import Pool
@@ -28,10 +29,12 @@ class ICOTerm():
         self.github = term_dict['github']
         # self.etherscan = term_dict['???']
         self.telegram = term_dict['telegram']
-        self.twitter = term_dict['twitter']
+        # self.twitter = term_dict['twitter']
         self.result = {}					# storage the result
+        self.result['id'] = term_dict['id']
+        self.result['name'] = term_dict['name']
 
-	# get request via urllib
+    # get request via urllib
     def getResponse(self, url):
         # start=time.time()
         request = urllib.request.Request(url, headers=header)
@@ -58,11 +61,7 @@ class ICOTerm():
             # id = "UCbzLOZaEegUfTVBJQeSc0sw"
             if "channel" not in YouTubeurl:
                 # url = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + id + "&key=AIzaSyAZj7k542xJe9zZSX0Boka858oZ_1RSlC4"
-                request = urllib.request.Request(YouTubeurl)
-                response = urllib.request.urlopen(request)
-
-                data = response.read().decode('utf-8')
-
+                data = self.getResponse(YouTubeurl).decode('utf-8')
 				# get data via xpath
                 path = '// meta[ @ property = "og:url"] /@content'
                 selector = etree.HTML(data)
@@ -71,9 +70,9 @@ class ICOTerm():
                     raise Exception("Youtube域名出错")
                 else:
                     YouTubeurl = data[0]
+
             id = re.findall("(?<=/)[A-Za-z0-9_-]+$", YouTubeurl)[0];
             # url = url + id + "&key=AIzaSyAZj7k542xJe9zZSX0Boka858oZ_1RSlC4"
-
             data = self.getResponse(url + id + "&key=" + key)
             data = data.decode('utf-8')
             data = json.loads(data)
@@ -135,8 +134,7 @@ class ICOTerm():
         data.decode('utf-8')
         selector = etree.HTML(data)
         url = self.github.replace("https://github.com/", "");
-        path = '//a[@href="/' + url.replace("https://github.com", "") + '/stargazers"]/text()'
-        '//a[@href="/bitcoin/bitcoin/stargazers"]/text()'
+        path = '//a[@href="/' + url + '/stargazers"]/text()'
         data = selector.xpath(path)
         if len(data) == 0:
             return
@@ -169,26 +167,27 @@ class ICOTerm():
         print('twitter over')
 	#threads
     def MulTreGetter(self):
-        threads = [Thread(target=self.GetYoutubeViewCount),
+        threads = [
+                    # Thread(target=self.GetYoutubeViewCount),
                    Thread(target=self.getAlexaRank),
                    Thread(target=self.getGitHubStar),
                    Thread(target=self.getTelegramChannelSize),
-                   Thread(target=self.getTwitterFollowers)]
+                   # Thread(target=self.getTwitterFollowers)
+        ]
         # threads.append(Thread(target=self.GetEtherscanAddress))
 
         for t in threads:
             t.start()
         for t in threads:
-            t.join()#wait all threads done
+            t.join()
         return self.result
 
 
 if __name__ == "__main__":
     t = time.time()
-    p = Pool()
-    processes = {}
-    Terms = {}
-    res = {}
+    p = Pool(10)#todo
+    processes, Terms, res = {}, {}, {}
+    postData=collections.defaultdict(list)
     file = open('ico_projs.json', "r")
     fileJson = json.load(file)
     for ico_proj in fileJson:
@@ -198,19 +197,20 @@ if __name__ == "__main__":
     for term in Terms.keys():
         result = p.apply_async(Terms[term].MulTreGetter)
         processes[term] = result
-
     p.close()
     p.join()
 	#wait all processes done
     driver.quit()
     for proc in processes.keys():
         res[proc] = processes[proc].get()
-    res['date'] = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+        postData['data'].append(res[proc])
+    postData['date'] = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+
     print(res)
     print(time.time() - t)
 	#convert result to a json format and write in a file
-    filename = 'ico.json'
-    fp = open(filename,'a')
-    fp.write(json.dumps(res))
-    fp.close()
+    # filename = 'ico.json'
+    # fp = open(filename,'a')
+    # fp.write(json.dumps(postData))
+    # fp.close()
 
