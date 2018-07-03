@@ -4,28 +4,26 @@
 
 
 name|parameter|type|result
-:---|:----
+:---|:----|:-----|:-----
 getData()|None|GET|json
 
 **json格式 字段变动直接在单个项目中修改**
 ```json
 [
   {
-    "id":"1",
     "name": "QuarkChain ",
     "web": "https://www.quarkchain.io/",
     "telegram": "https://t.me/quarkchain",
     "github": "https://github.com/iotexproject/iotex-core",
-    "etherscan": "https://etherscan.io/token/0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0",
+    "???": "https://etherscan.io/token/0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0",
     "youtube": "https://www.youtube.com/c/UCWltsUAyiser4-_eLLGmpdg"
   },
   {
-    "id":"2",
     "name":"a",
     "web": "http://www.baidu.com",
     "telegram": "https://t.me/quarkchain",
     "github": "https://github.com/iotexproject/iotex-core",
-    "etherscan": "https://etherscan.io/token/0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0",
+    "???": "https://etherscan.io/token/0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0",
     "youtube": "https://www.youtube.com/c/UCWltsUAyiser4-_eLLGmpdg"
   }
 ]
@@ -33,30 +31,31 @@ getData()|None|GET|json
 
 ### 2、结果发送接口
 name|parameter|type|result
-:---|:----
+:---|:----|:-----|:-----
 postData(json)|json|POST|None
 
 ```json
 {
-	"data": [{
-		"id": 1,
-		"name": "Sparkster",
+	"QuarkChain ": {
 		"AlexaRank": {
-			"GlobalRank": "110883",
-			"COUNTRY_RANK": "13435"
+			"GlobalRank": "86186",
+			"COUNTRY_RANK": "119965"
 		},
-		"TelegramChannelSize": "62820",
-        "GitHubStar":"1234"
-	}, {
-		"id": 2,
-		"name": "Seele",
+		"GitHubStar": "746",
+		"TelegramChannelSize": "3587",
+        "TwitterFollowers": "1234",
+        "YoutubeChannelViewCount":"1234"
+	},
+	"a": {
 		"AlexaRank": {
-			"GlobalRank": "198649",
-			"COUNTRY_RANK": "21804"
+			"GlobalRank": "4",
+			"COUNTRY_RANK": "1"
 		},
-		"TelegramChannelSize": "29875",
-        "GitHubStar":"1234"
-	}],
+		"GitHubStar": "746",
+		"TelegramChannelSize": "3587",
+        "TwitterFollowers": "1234",
+        "YoutubeChannelViewCount":"0"
+	},
 	"date": "2018-07-03"
 }
 ```
