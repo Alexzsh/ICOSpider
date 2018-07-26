@@ -18,7 +18,9 @@ header = {
 #simulate click or hover via using phantomjs
 driver = webdriver.PhantomJS(
     executable_path='./phantomjs')
-
+class JSONObject():
+    def __init__(self,d):
+        self.__dict__=d
 
 class ICOTerm():
     def __init__(self, term_dict):
@@ -35,12 +37,13 @@ class ICOTerm():
         # start=time.time()
         request = urllib.request.Request(url, headers=header)
         try:
-            response = urllib.request.urlopen(request)
-            data = response.read()
+            data = urllib.request.urlopen(request).read()
+
         except Exception as e:
             print("exception", e)
             return
         # print("url ",url,"read over",(time.time()-start))
+
         return data
 
     def GetYoutubeViewCount(self):
@@ -72,7 +75,7 @@ class ICOTerm():
             id = re.findall("(?<=/)[A-Za-z0-9_-]+$", YouTubeurl)[0];
             # url = url + id + "&key=AIzaSyAZj7k542xJe9zZSX0Boka858oZ_1RSlC4"
 
-            data = self.getResponse(url + id + "&key=" + key)
+            data = next(self.getResponse(url + id + "&key=" + key))
             data = data.decode('utf-8')
             data = json.loads(data)
             if len(data['items']) == 0:
@@ -93,7 +96,7 @@ class ICOTerm():
     #     if self.etherscan == '':
     #         self.result[tag] = 0
     #         return
-    #     data = self.getResponse(self.etherscan, True)
+    #     data = next(self.getResponse(self.etherscan, True))
     #     selector = etree.HTML(data)
     #     item = selector.xpath("//table[@class='table']/tr[3]/td[2]/text()")
     #     data = re.sub("[^\d]", "", item[0])
@@ -105,7 +108,7 @@ class ICOTerm():
         if self.web == '':
             return
         url = ('http://data.alexa.com/data?cli=10&dat=snbamz&url=%s' % self.web)
-        data = self.getResponse(url)
+        data = next(self.getResponse(url))
         # data = data.decode('gbk')
         # print(data)
         selector = etree.XML(data)
@@ -124,29 +127,55 @@ class ICOTerm():
         print('alexa over')
 
     def getGitHubStar(self):
-        tag = "GitHubStar";
+        tag = "GitHubStar"
+        res={}
         if self.github == '':
             return
-        data = self.getResponse(self.github)
+        data = (self.getResponse(self.github.replace('github','api.github')))
         if data is None:
             return
-        data.decode('utf-8')
-        selector = etree.HTML(data)
-        url = self.github.replace("https://github.com/", "");
-        path = '//a[@href="/' + url.replace("https://github.com", "") + '/stargazers"]/text()'
-        '//a[@href="/bitcoin/bitcoin/stargazers"]/text()'
-        data = selector.xpath(path)
-        if len(data) == 0:
-            return
-        data = re.sub("[^\d]", "", data[0])
-        self.result[tag] = data.strip()
-        print('git over')
+        res_json = json.loads(data, object_hook=JSONObject)
+
+        res['stargazers_count'] = res_json.stargazers_count
+        res['watchers_count'] = res_json.watchers_count
+        res['forks'] = res_json.forks
+        res['open_issues'] = res_json.open_issues
+        res['subscribers_count'] = res_json.subscribers_count
+        res['network_count'] = res_json.network_count
+        res['size'] = res_json.size
+        res['open_issues'] = res_json.open_issues
+        res['open_issues'] = res_json.open_issues
+        rule = re.compile(r'{[[/s/S].*?}')
+        comments = re.sub(rule, '', res_json.comments_url)
+        commits = re.sub(rule, '', res_json.commits_url)
+        contributors = res_json.contributors_url
+        subscribers = res_json.subscribers_url
+        wait={
+            'comments':comments,
+            'commits':commits,
+            'contributors':contributors,
+            'subscribers':subscribers
+        }
+        for k,v in wait.items():
+            res[k]=len(json.loads((self.getResponse(v)), object_hook=JSONObject))
+        self.result[tag]=res
+
+        # selector = etree.HTML(data)
+        # url = self.github.replace("https://github.com/", "");
+        # path = '//a[@href="/' + url.replace("https://github.com", "") + '/stargazers"]/text()'
+        # '//a[@href="/bitcoin/bitcoin/stargazers"]/text()'
+        # data = selector.xpath(path)
+        # if len(data) == 0:
+        #    return
+        # data = re.sub("[^\d]", "", data[0])
+        # self.result[tag] = data.strip()
+        print('git over',res)
 
     def getTelegramChannelSize(self):
         tag = 'TelegramChannelSize'
         if self.telegram == '':
             return
-        data = self.getResponse(self.telegram)
+        data = next(self.getResponse(self.telegram))
         selector = etree.HTML(data)
         result = selector.xpath("//div[@class='tgme_page_extra']/text()")
         result = re.sub("[^\d]", "", result[0])
@@ -168,11 +197,12 @@ class ICOTerm():
 	#gevents
     def MulTreGetter(self):
 
-        gevent.joinall([gevent.spawn(self.getAlexaRank()),
+        gevent.joinall([
+                        # gevent.spawn(self.getAlexaRank()),
                        gevent.spawn(self.getGitHubStar()),
-                       gevent.spawn(self.getTelegramChannelSize()),
-                       gevent.spawn(self.getTwitterFollowers()),
-                       gevent.spawn(self.GetYoutubeViewCount())
+                       # gevent.spawn(self.getTelegramChannelSize()),
+                       # gevent.spawn(self.getTwitterFollowers()),
+                       # gevent.spawn(self.GetYoutubeViewCount())
                        ])
 
         return self.result
@@ -189,22 +219,22 @@ if __name__ == "__main__":
     for ico_proj in fileJson:
         result = ICOTerm(ico_proj)
         Terms[ico_proj["name"]] = result
-	#multi-processes
+    #multi-processes
     for term in Terms.keys():
         result = p.apply_async(Terms[term].MulTreGetter)
         processes[term] = result
 
     p.close()
     p.join()
-	#wait all processes done
+    #wait all processes done
     driver.quit()
     for proc in processes.keys():
         res[proc] = processes[proc].get()
     res['date'] = time.strftime('%Y-%m-%d', time.localtime(time.time()))
     print(res)
     print(time.time() - t)
-	#convert result to a json format and write in a file
-    # filename = 'ico.json'
-    # fp = open(filename, 'a+')
-    # fp.write(json.dumps(res))
-    # fp.close()
+    # convert result to a json format and write in a file
+    filename = 'ico.json'
+    fp = open(filename, 'a+')
+    fp.write(json.dumps(res))
+    fp.close()
