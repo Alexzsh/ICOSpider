@@ -8,6 +8,11 @@ from multiprocessing import Process
 from selenium import webdriver
 import json
 
+import stem
+import stem.connection
+from stem.control import Controller
+from stem import Signal
+
 from threading import Thread
 #simulate a browser to be prevented
 header = {
@@ -17,9 +22,26 @@ header = {
     'Accept-Language': 'zh-CN,zh;q=0.9'
 
 }
+
+proxies={
+    "http" : "127.0.0.1:8118",
+    "https" : "127.0.0.1:8118"
+}
+#proxy="127.0.0.1:8118"
+# Build ProxyHandler object by given proxy
+proxy_support=urllib.request.ProxyHandler(proxies)
+# Build opener with ProxyHandler object
+opener = urllib.request.build_opener(proxy_support)
+# Install opener to request
+urllib.request.install_opener(opener)
+
+
+
 #simulate click or hover via using phantomjs
+
 driver = webdriver.PhantomJS(
-    executable_path='./phantomjs')
+    executable_path='./phantomjs',
+)
 
 #define a class
 class ICOTerm():
@@ -38,6 +60,7 @@ class ICOTerm():
     def getResponse(self, url):
         # start=time.time()
         request = urllib.request.Request(url, headers=header)
+        print('ip is :',urllib.request.urlopen(urllib.request.Request("http://icanhazip.com", headers=header)).read())
         try:
             response = urllib.request.urlopen(request)
             data = response.read()
@@ -165,14 +188,20 @@ class ICOTerm():
         count = followers[0]
         self.result[tag] = count
         print('twitter over')
+    def renew_connection(self):
+        with Controller.from_port(port = 9051) as controller:
+            controller.authenticate(password = 'fyl815')
+            controller.signal(Signal.NEWNYM)
+            controller.close()
 	#threads
     def MulTreGetter(self):
         threads = [
-                    # Thread(target=self.GetYoutubeViewCount),
-                   Thread(target=self.getAlexaRank),
-                   Thread(target=self.getGitHubStar),
-                   Thread(target=self.getTelegramChannelSize),
-                   # Thread(target=self.getTwitterFollowers)
+                    Thread(target=self.renew_connection),
+                    Thread(target=self.GetYoutubeViewCount),
+                    Thread(target=self.getAlexaRank),
+                    Thread(target=self.getGitHubStar),
+                    Thread(target=self.getTelegramChannelSize),
+                    # Thread(target=self.getTwitterFollowers)
         ]
         # threads.append(Thread(target=self.GetEtherscanAddress))
 
@@ -193,19 +222,19 @@ if __name__ == "__main__":
     for ico_proj in fileJson:
         result = ICOTerm(ico_proj)
         Terms[ico_proj["id"]] = result
-	#multi-processes
+    #multi-processes
     for term in Terms.keys():
         result = p.apply_async(Terms[term].MulTreGetter)
         processes[term] = result
     p.close()
     p.join()
-	#wait all processes done
+    #wait all processes done
     driver.quit()
     for proc in processes.keys():
         res[proc] = processes[proc].get()
         postData['data'].append(res[proc])
     postData['date'] = time.strftime('%Y-%m-%d',time.localtime(time.time()))
-
+    
     print(res)
     print(time.time() - t)
 	#convert result to a json format and write in a file
@@ -213,4 +242,28 @@ if __name__ == "__main__":
     # fp = open(filename,'a')
     # fp.write(json.dumps(postData))
     # fp.close()
+
+
+
+
+    #TEST
+    # 让Tor重建连接，获得新的线路
+    # import stem
+    # import stem.connection
+
+    # from stem import Signal
+    # from stem.control import Controller
+    # def renew_connection():
+    #     with Controller.from_port(port=9051) as controller:
+    #         controller.authenticate(password='fyl815')
+    #         controller.signal(Signal.NEWNYM)
+    #         controller.close()
+    # def get_public_ip(headers):
+    #     request = urllib.request.Request("http://icanhazip.com", headers=headers)
+    #     data = urllib.request.urlopen(request).read()
+    #     print(data)
+
+    # for i in range(10):
+    #     # renew_connection()
+    #     get_public_ip(header)
 
