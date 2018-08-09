@@ -5,7 +5,7 @@
 - Use privoxy to change http/https request to socks because of tor just for socks
 - Use stem to control port restart enforce
 - urllib or requests or selenium  use proxies to connect the privoxy's port
-- [more setting in that](#tor)
+- [more setting in that](#Ubuntu16.04+Tor+privoxy+stem)
 
 ### 1、数据请求接口
 
@@ -64,7 +64,7 @@ postData(json)|json|POST|None
 	"date": "2018-07-03"
 }
 ```
-## <span id = "tor"> Ubuntu16.04+Tor+privoxy+stem </span>
+## Ubuntu16.04+Tor+privoxy+stem 
 ## **1.Intsall Tor**
 ```shell
 sudo apt-get update
