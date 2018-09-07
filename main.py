@@ -246,24 +246,24 @@ if __name__ == "__main__":
 
 
 
-    #TEST
+    # TEST
     # 让Tor重建连接，获得新的线路
-    # import stem
-    # import stem.connection
+    import stem
+    import stem.connection
 
-    # from stem import Signal
-    # from stem.control import Controller
-    # def renew_connection():
-    #     with Controller.from_port(port=9051) as controller:
-    #         controller.authenticate(password='fyl815')
-    #         controller.signal(Signal.NEWNYM)
-    #         controller.close()
-    # def get_public_ip(headers):
-    #     request = urllib.request.Request("http://icanhazip.com", headers=headers)
-    #     data = urllib.request.urlopen(request).read()
-    #     print(data)
+    from stem import Signal
+    from stem.control import Controller
+    def renew_connection():
+        with Controller.from_port(port=9051) as controller:
+            controller.authenticate(password='fyl815')
+            controller.signal(Signal.NEWNYM)
+            controller.close()
+    def get_public_ip(headers):
+        request = urllib.request.Request("http://icanhazip.com", headers=headers)
+        data = urllib.request.urlopen(request).read()
+        print(data)
 
-    # for i in range(10):
-    #     # renew_connection()
-    #     get_public_ip(header)
+    for i in range(10):
+        renew_connection()
+        get_public_ip(header)
 
