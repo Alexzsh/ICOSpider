@@ -1,4 +1,4 @@
-import urllib.request
+﻿import urllib.request
 import re
 import collections
 from lxml import etree
@@ -7,11 +7,11 @@ from multiprocessing import Pool
 from multiprocessing import Process
 from selenium import webdriver
 import json
-
-import stem
-import stem.connection
-from stem.control import Controller
-from stem import Signal
+import asyncio,aiofile,aiohttp,logging
+# import stem
+# import stem.connection
+# from stem.control import Controller
+# from stem import Signal
 
 from threading import Thread
 #simulate a browser to be prevented
@@ -24,8 +24,8 @@ header = {
 }
 
 proxies={
-    "http" : "127.0.0.1:8118",
-    "https" : "127.0.0.1:8118"
+    "http" : "127.0.0.1:1086",
+    "https" : "127.0.0.1:1086"
 }
 #proxy="127.0.0.1:8118"
 # Build ProxyHandler object by given proxy
@@ -58,17 +58,19 @@ class ICOTerm():
 
     # get request via urllib
     def getResponse(self, url):
-        # start=time.time()
         request = urllib.request.Request(url, headers=header)
-        print('ip is :',urllib.request.urlopen(urllib.request.Request("http://icanhazip.com", headers=header)).read())
+        # print('ip is :',urllib.request.urlopen(urllib.request.Request("http://icanhazip.com", headers=header)).read())
         try:
-            response = urllib.request.urlopen(request)
-            data = response.read()
+            data = urllib.request.urlopen(request).read()
         except Exception as e:
             print("exception", e)
             return
-        # print("url ",url,"read over",(time.time()-start))
         return data
+
+    async def getResponseAsync(self,url):
+        async with aiohttp.ClientSession(headers=header) as session:
+            async with session.get(url) as resp:
+                return await resp.text()
 
     def GetYoutubeViewCount(self):
         Tag = "YoutubeChannelViewCount"
@@ -124,28 +126,38 @@ class ICOTerm():
     #     self.result[tag] = data
     #     print('ether over')
 
-    def getAlexaRank(self):
+    async def getAlexaRank(self):
         tag = "AlexaRank"
         if self.web == '':
             return
         url = ('http://data.alexa.com/data?cli=10&dat=snbamz&url=%s' % self.web)
-        data = self.getResponse(url)
+        data = await self.getResponseAsync(url)
         # data = data.decode('gbk')
-        # print(data)
-        selector = etree.XML(data)
-        global_rank = selector.xpath('//SD/REACH/@RANK')
-        country_rank = selector.xpath('//SD/COUNTRY/@RANK')
+
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(data, 'lxml')
         dict_res = {}
-        if len(global_rank) == 0:
-            dict_res['GlobalRank'] = 0
-            self.result[tag] = dict_res
-            return
-        else:
-            dict_res['GlobalRank'] = global_rank[0]
-        if len(country_rank) != 0:
-            dict_res['COUNTRY_RANK'] = country_rank[0]
+        dict_res['global_rank']=0
+        dict_res['country_rank']= 0
+        try:
+            dict_res['global_rank'] = soup.reach['rank']
+            dict_res['country_rank'] = soup.country['rank']
+        except TypeError as e:
+            logging.error(self.web+'has no rank')
+        # selector = etree.XML(data)
+        # global_rank = selector.xpath('//SD/REACH/@RANK')
+        # country_rank = selector.xpath('//SD/COUNTRY/@RANK')
+
+        # if len(global_rank) == 0:
+        #     dict_res['GlobalRank'] = 0
+        #     self.result[tag] = dict_res
+        #     return
+        # else:
+        #     dict_res['GlobalRank'] = global_rank[0]
+        # if len(country_rank) != 0:
+        #     dict_res['COUNTRY_RANK'] = country_rank[0]
         self.result[tag] = dict_res
-        print('alexa over')
+        print('alexa over', dict_res)
 
     def getGitHubStar(self):
         tag = "GitHubStar";
@@ -188,19 +200,19 @@ class ICOTerm():
         count = followers[0]
         self.result[tag] = count
         print('twitter over')
-    def renew_connection(self):
-        with Controller.from_port(port = 9051) as controller:
-            controller.authenticate(password = 'fyl815')
-            controller.signal(Signal.NEWNYM)
-            controller.close()
+    # def renew_connection(self):
+    #     with Controller.from_port(port = 9051) as controller:
+    #         controller.authenticate(password = 'fyl815')
+    #         controller.signal(Signal.NEWNYM)
+    #         controller.close()
 	#threads
     def MulTreGetter(self):
         threads = [
-                    Thread(target=self.renew_connection),
-                    Thread(target=self.GetYoutubeViewCount),
+                    # Thread(target=self.renew_connection),
+                    # Thread(target=self.GetYoutubeViewCount),
                     Thread(target=self.getAlexaRank),
-                    Thread(target=self.getGitHubStar),
-                    Thread(target=self.getTelegramChannelSize),
+                    # Thread(target=self.getGitHubStar),
+                    # Thread(target=self.getTelegramChannelSize),
                     # Thread(target=self.getTwitterFollowers)
         ]
         # threads.append(Thread(target=self.GetEtherscanAddress))
@@ -212,31 +224,41 @@ class ICOTerm():
         return self.result
 
 
+
+
 if __name__ == "__main__":
-    t = time.time()
-    p = Pool(10)#todo
+    # t = time.time()
+    # p = Pool(10)#todo
+
+
+
+
     processes, Terms, res = {}, {}, {}
-    postData=collections.defaultdict(list)
+    # postData=collections.defaultdict(list)
     file = open('ico_projs.json', "r")
     fileJson = json.load(file)
     for ico_proj in fileJson:
         result = ICOTerm(ico_proj)
         Terms[ico_proj["id"]] = result
-    #multi-processes
-    for term in Terms.keys():
-        result = p.apply_async(Terms[term].MulTreGetter)
-        processes[term] = result
-    p.close()
-    p.join()
-    #wait all processes done
-    driver.quit()
-    for proc in processes.keys():
-        res[proc] = processes[proc].get()
-        postData['data'].append(res[proc])
-    postData['date'] = time.strftime('%Y-%m-%d',time.localtime(time.time()))
-    
-    print(res)
-    print(time.time() - t)
+
+    tasks=[v.getAlexaRank() for k,v in Terms.items()]
+    loop=asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.wait(tasks))
+    # #multi-processes
+    # for term in Terms.keys():
+    #     result = p.apply_async(Terms[term].MulTreGetter)
+    #     processes[term] = result
+    # p.close()
+    # p.join()
+    # #wait all processes done
+    # driver.quit()
+    # for proc in processes.keys():
+    #     res[proc] = processes[proc].get()
+    #     postData['data'].append(res[proc])
+    # postData['date'] = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+    #
+    # print(res)
+    # print(time.time() - t)
 	#convert result to a json format and write in a file
     # filename = 'ico.json'
     # fp = open(filename,'a')
@@ -246,24 +268,24 @@ if __name__ == "__main__":
 
 
 
-    # TEST
+    #TEST
     # 让Tor重建连接，获得新的线路
-    import stem
-    import stem.connection
+    # import stem
+    # import stem.connection
 
-    from stem import Signal
-    from stem.control import Controller
-    def renew_connection():
-        with Controller.from_port(port=9051) as controller:
-            controller.authenticate(password='fyl815')
-            controller.signal(Signal.NEWNYM)
-            controller.close()
-    def get_public_ip(headers):
-        request = urllib.request.Request("http://icanhazip.com", headers=headers)
-        data = urllib.request.urlopen(request).read()
-        print(data)
+    # from stem import Signal
+    # from stem.control import Controller
+    # def renew_connection():
+    #     with Controller.from_port(port=9051) as controller:
+    #         controller.authenticate(password='fyl815')
+    #         controller.signal(Signal.NEWNYM)
+    #         controller.close()
+    # def get_public_ip(headers):
+    #     request = urllib.request.Request("http://icanhazip.com", headers=headers)
+    #     data = urllib.request.urlopen(request).read()
+    #     print(data)
 
-    for i in range(10):
-        renew_connection()
-        get_public_ip(header)
+    # for i in range(10):
+    #     # renew_connection()
+    #     get_public_ip(header)
 
