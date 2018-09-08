@@ -1,0 +1,577 @@
+[32m[main           ][<module>            ][INFO    ] Initialize via json[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[31m[main           ][getAlexaRank        ][ERROR   ] https://hold.co/has no rank[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[31m[main           ][getAlexaRank        ][ERROR   ] http://edenchain.io/has no rank[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[31m[main           ][getAlexaRank        ][ERROR   ] https://tokensale.nebula-ai.network/has no rank[0m
+[32m[main           ][getAlexaRank        ][INFO    ] alexa over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] tele over[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[31m[base_events    ][default_exception_handler][ERROR   ] Task exception was never retrieved
+future: <Task finished coro=<ICOTerm.tasks() done, defined at /Users/user/Documents/bedroom/ICOSpider/main.py:296> exception=SocketError(ConnectionRefusedError(61, 'Connection refused'),)>
+Traceback (most recent call last):
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 402, in _make_socket
+    control_socket.connect((self._control_addr, self._control_port))
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 299, in tasks
+    await self.renew_connection()
+  File "/Users/user/Documents/bedroom/ICOSpider/main.py", line 275, in renew_connection
+    with Controller.from_port(port = 9051) as controller:
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/control.py", line 1026, in from_port
+    control_port = stem.socket.ControlPort(address, port)
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 376, in __init__
+    self.connect()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 247, in connect
+    self._socket = self._make_socket()
+  File "/usr/local/miniconda3/lib/python3.6/site-packages/stem/socket.py", line 405, in _make_socket
+    raise stem.SocketError(exc)
+stem.SocketError: [Errno 61] Connection refused[0m
+[32m[main           ][<module>            ][INFO    ] Initialize via json[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://pchain.org/index alexa over {'global_rank': '194190', 'country_rank': '107935'}[0m
+[31m[main           ][getAlexaRank        ][ERROR   ] https://tokensale.nebula-ai.network/has no rank[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://tokensale.nebula-ai.network/ alexa over {'global_rank': '2608035', 'country_rank': 0}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://seele.pro/ alexa over {'global_rank': '277636', 'country_rank': '302963'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://shivom.io/ alexa over {'global_rank': '551984', 'country_rank': '463386'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] http://fantom.foundation/ alexa over {'global_rank': '116144', 'country_rank': '655189'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://www.theabyss.com/ alexa over {'global_rank': '404201', 'country_rank': '125319'}[0m
+[31m[main           ][getAlexaRank        ][ERROR   ] http://edenchain.io/has no rank[0m
+[32m[main           ][getAlexaRank        ][INFO    ] http://edenchain.io/ alexa over {'global_rank': '642313', 'country_rank': 0}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://origo.network/ alexa over {'global_rank': '170443', 'country_rank': '25741'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://bluzelle.com/ alexa over {'global_rank': '429479', 'country_rank': '564479'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://holo.host/ alexa over {'global_rank': '382313', 'country_rank': '193492'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://dock.io/ alexa over {'global_rank': '40146', 'country_rank': '32507'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://loomx.io/ alexa over {'global_rank': '216617', 'country_rank': '140186'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://oneledger.io/ alexa over {'global_rank': '326307', 'country_rank': '106256'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] http://sparkster.me/ alexa over {'global_rank': '115724', 'country_rank': '82339'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] http://hybridblock.io/ alexa over {'global_rank': '751064', 'country_rank': '397183'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://nuggets.life/ alexa over {'global_rank': '1251592', 'country_rank': '1092873'}[0m
+[31m[main           ][getAlexaRank        ][ERROR   ] https://hold.co/has no rank[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://hold.co/ alexa over {'global_rank': '1182874', 'country_rank': 0}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://www.quarkchain.io/ alexa over {'global_rank': '258733', 'country_rank': '277997'}[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://neonexchange.org/ alexa over {'global_rank': '116529', 'country_rank': '138952'}[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/neonexchange is not a repo url[0m
+[32m[main           ][getAlexaRank        ][INFO    ] https://iotex.io/#home alexa over {'global_rank': '466805', 'country_rank': '98798'}[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/channelHolo tele over 10443[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/holochain is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/seeletech tele over 26638[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/seeleteam is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/dockio tele over 51914[0m
+[31m[main           ][getGitHubStar       ][ERROR   ]  is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/projshivom tele over 46035[0m
+[31m[main           ][getGitHubStar       ][ERROR   ]  is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/edenchainio tele over 22728[0m
+[31m[main           ][getGitHubStar       ][ERROR   ]  is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/theabyss tele over 39158[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/theabyssportal is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/bluzelle tele over 20610[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/IoTeXGroup tele over 54529[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/origoofficialgroup tele over 63608[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/NebulaAICommunity tele over 5527[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/nebulaai is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/oneledger tele over 21622[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/Oneledger is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/fantom_english tele over 34716[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/FantomFoundation is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/quarkchain tele over 3303[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/QuarkChain is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/pchain_org tele over 80962[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/pchain-org is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/HoldHQ tele over 18963[0m
+[31m[main           ][getGitHubStar       ][ERROR   ]  is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/nuggetsblockchain tele over 25691[0m
+[31m[main           ][getGitHubStar       ][ERROR   ]  is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/HybridBlockHQ tele over 27213[0m
+[31m[main           ][getGitHubStar       ][ERROR   ]  is not a repo url[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/SparksterICO tele over 37279[0m
+[31m[main           ][getGitHubStar       ][ERROR   ]  is not a repo url[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/channel/UCSRJRJvkZHk3f1PemqT-R0g youtube over 132246[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/channel/UCWltsUAyiser4-_eLLGmpdg youtube over 8707[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/neonexchange youtube over 38739[0m
+[32m[main           ][getTelegramChannelSize][INFO    ] https://t.me/loomnetwork tele over 14678[0m
+[31m[main           ][getGitHubStar       ][ERROR   ] https://github.com/loomnetwork is not a repo url[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/channel/UCAkXXoN7cFSEN-4SFtLFmHQ youtube over 55100[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/channel/UCbzLOZaEegUfTVBJQeSc0sw youtube over 10896[0m
+[32m[main           ][getGitHubStar       ][INFO    ] https://github.com/origonnetwork/origo.github.io git over {'stargazers': 0, 'watchers': 0, 'network/members': 0, 'commits': '21', 'branches': '1', 'releases': '0', 'contributors': '1', 'issues': '0', 'PullRequest': '0', 'Projects': '0'}[0m
+[32m[main           ][getGitHubStar       ][INFO    ] https://github.com/iotexproject/iotex-core git over {'stargazers': 0, 'watchers': 0, 'network/members': 0, 'commits': '686', 'branches': '5', 'releases': '3', 'contributors': '19', 'issues': '6', 'PullRequest': '2', 'Projects': '0'}[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://vimeo.com/theabyss youtube over 0[0m
+[32m[main           ][getGitHubStar       ][INFO    ] https://github.com/njmurarka/bluzelle git over {'stargazers': 0, 'watchers': 0, 'network/members': 0, 'commits': '286', 'branches': '21', 'releases': '4', 'contributors': '11', 'issues': '1', 'PullRequest': '4', 'Projects': '0'}[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/channel/UCwA9fWqM_v22Zzw2yRk9GYw youtube over 0[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/c/ProjectShivom youtube over 94347[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/channel/UCdj3xY3LCktuamvuFusWOZw youtube over 43265[0m
+[32m[main           ][GetYoutubeViewCount ][INFO    ] https://www.youtube.com/channel/UCzhJz9g-T5BWjbPeJLKY_jw youtube over 278294[0m
+[32m[main           ][<module>            ][INFO    ] cost time 6.120810031890869[0m
